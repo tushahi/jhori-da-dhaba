@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Restaurant - Order</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Menu Styles */
+        .menu-container {
+            margin: 50px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item {
+            margin-bottom: 20px;
+        }
+
+        .menu-item label {
+            font-weight: bold;
+        }
+
+        .menu-item select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .menu-item input[type="number"] {
+            width: 60px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #total {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Buy Button Styles */
+        .buy-button {
+            background-color: #f44336;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Restaurant</h1>
+</header>
+
+<main>
+    <div class="menu-container">
+        <div class="menu-item">
+            <label for="burger">Burger:</label>
+            <select id="burger" onchange="calculateTotal()">
+                <option value="0">None</option>
+                <option value="5">Regular Burger - $5</option>
+                <option value="7">Cheeseburger - $7</option>
+            </select>
+            <input type="number" id="burgerQty" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="menu-item">
+            <label for="pizza">Pizza:</label>
+            <select id="pizza" onchange="calculateTotal()">
+                <option value="0">None</option>
+                <option value="10">Margherita Pizza - $10</option>
+                <option value="12">Pepperoni Pizza - $12</option>
+            </select>
+            <input type="number" id="pizzaQty" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div id="total">Total: $0</div>
+        <button class="buy-button">Buy Now</button>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 My Restaurant. All rights reserved.</p>
+</footer>
+
+<script>
+    function calculateTotal() {
+        const burgerPrice = document.getElementById('burger').value;
+        const burgerQty = document.getElementById('burgerQty').value;
+        const pizzaPrice = document.getElementById('pizza').value;
+        const pizzaQty = document.getElementById('pizzaQty').value;
+
+        const total = (burgerPrice * burgerQty) + (pizzaPrice * pizzaQty);
+
+        document.getElementById('total').innerText = 'Total: $' + total;
+    }
+</script>
+
+</body>
+</html>
